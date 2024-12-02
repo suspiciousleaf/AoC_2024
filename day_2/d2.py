@@ -10,17 +10,13 @@ with open(f"day_2/{INPUT}.txt", "r") as f:
 
 def increase_record(record):
     for i, num in enumerate(record[:-1]):
-        if num < record[i+1] <= num + 3:
-            continue
-        else:
+        if not num < record[i+1] <= num + 3:
             return False
     return True
 
 def decrease_record(record):
     for i, num in enumerate(record[:-1]):
-        if num > record[i+1] >= num - 3:
-            continue
-        else:
+        if not num > record[i+1] >= num - 3:
             return False
     return True
 
