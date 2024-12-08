@@ -31,9 +31,9 @@ def find_valid(key: int, value:list[int], options:list[str]) -> int | None:
 
 def compute(data: dict, operands: list) -> int:
     total = 0
+    options = {i:list(product(operands, repeat=i)) for i in range(max([len(value) for value in data.values()]))}
     for key, value in data.items():
-        options = list(product(operands, repeat=len(value)-1))
-        valid = find_valid(key, value, options)
+        valid = find_valid(key, value, options[len(value)-1])
         if valid:
             total += valid
     return total
@@ -44,7 +44,7 @@ print(f"Part One: {p1}, took {(t1-t0)*1000:.3f} ms")
 
 p2: int = compute(data, ["+", "*", "||"])
 t2: float = time.perf_counter()
-print(f"Part Two: {p2}, took {(t2-t1)*1000:.3f} ms")
+print(f"Part Two: {p2}, took {(t2-t1):.3f} s")
 
 
 
